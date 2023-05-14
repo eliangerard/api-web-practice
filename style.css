@@ -1,0 +1,240 @@
+:root {
+    --background: #fbfce8;
+    --accent: #005136;
+    --light-accent: rgb(142, 192, 159);
+
+    --app-margin: 5rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    margin: 1rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: var(--light-accent);
+    border-radius: 1rem;
+    transition: background-color 150ms;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent);
+}
+
+* {
+    font-family: 'Mada', sans-serif;
+}
+
+html,
+body {
+    margin: 0 var(--app-margin);
+}
+
+body {
+    margin: 0;
+    margin-left: 15rem;
+    padding-bottom: 5rem;
+    background-color: var(--background);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100%);
+    padding: 1rem;
+    background-color: var(--background);
+    /* background: rgb(251, 252, 232);
+    background: linear-gradient(180deg, rgba(251, 252, 232, 0.4) 41%, rgba(251, 252, 232, 0) 100%); */
+}
+aside {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: var(--accent);
+    height: 100%;
+    width: 13rem;
+
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+.asideChat {
+    border-radius: 1rem;
+    border: var(--light-accent) solid 2px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+.asideChat:hover {
+    cursor: pointer;
+}
+h2 {
+    margin: 0;
+    color: white;
+    font-weight: 900;
+    font-family: 'Montserrat';
+}
+h1 {
+    color: var(--accent);
+    font-weight: 900;
+    font-family: 'Montserrat';
+}
+#welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+#welcome div {
+    border-radius: 1rem;
+    background-color: var(--light-accent);
+    color: var(--accent);
+    padding: 1rem;
+    width: 20rem;
+    font-weight: bolder;
+    text-align: center;
+    margin: 0.5rem 0;
+}
+.chatActive {
+    background-color: var(--light-accent)!important;
+    color: var(--accent)!important;
+}
+#prompt {
+    position: fixed;
+    bottom: 0;
+    margin: 1rem 0;
+    width: calc(100% - (var(--app-margin) * 2) - 2rem - 15rem);
+    padding: 1rem;
+    background-color: var(--accent);
+    border-radius: 1rem;
+    height: 1.8rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 350ms, outline 150ms;
+    outline: var(--accent) solid 0px;
+}
+
+#prompt:focus-within {
+    outline: var(--light-accent) solid 5px;
+}
+
+#prompt:focus-within svg {
+    fill: var(--light-accent);
+}
+
+#prompt:focus-within input {
+    color: white;
+}
+
+#prompt input {
+    background-color: #00000000;
+    border: none;
+    color: var(--light-accent);
+    width: calc(100% - 5rem);
+    font-size: large;
+    font-weight: bold;
+
+    transition: color 350ms;
+}
+
+#prompt input:focus {
+    border: none;
+    outline: none;
+}
+#prompt input::placeholder {
+    color: var(--light-accent);
+}
+button {
+    border: none;
+    background-color: #00000000;
+}
+
+#prompt svg {
+    fill: var(--light-accent);
+    height: 1.8rem;
+    width: 1.8rem;
+    transition: fill 350ms;
+}
+#prompt svg:hover {
+    cursor: pointer;
+    fill: white;
+}
+#chat {
+    margin-top: 1rem;
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    width: 100%;
+    min-height: 85%;
+}
+
+.mmContainer {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+
+.myMessage {
+    background-color: var(--accent);
+    color: white;
+    font-weight: bold;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem 1rem 0 1rem;
+    max-width: 60%;
+    margin-right: 0;
+}
+code {
+    font-family: Consolas,"courier new";
+    color: white;
+    background-color: var(--accent);
+    border-radius: 0.5rem;
+    margin: 0.2rem;
+    padding: 0.5rem 1rem;
+}
+p {
+    margin: 0;
+}
+
+.gptContainer {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+}
+::selection {
+    color: var(--accent);
+    background: var(--background);
+    border-radius: 0.5rem;
+}
+
+.gptMessage {
+    background-color: var(--light-accent);
+    color: var(--accent);
+    font-weight: bold;
+    padding: 1rem;
+    margin: 1rem;
+    margin-left: 0;
+    border-radius: 1rem 1rem 1rem 0;
+    max-width: 60%;
+}
+
+@media (max-width: 700px) {
+    :root {
+        --app-margin: 1rem;
+    }
+}
