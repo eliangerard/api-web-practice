@@ -234,7 +234,16 @@ p {
 }
 
 @media (max-width: 700px) {
+    body {
+        margin-left: 2rem;
+    }
     :root {
         --app-margin: 1rem;
+    }
+    aside {
+        width: 2rem;
+    }
+    aside:hover {
+        width: 15rem;
     }
 }
