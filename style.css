@@ -40,7 +40,7 @@ body {
 body {
     margin: 0;
     margin-left: 15rem;
-    padding-bottom: 5rem;
+    padding-bottom: 6rem;
     background-color: var(--background);
 }
 
@@ -48,37 +48,105 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    width: calc(100%);
-    padding: 1rem;
-    background-color: var(--background);
-    /* background: rgb(251, 252, 232);
-    background: linear-gradient(180deg, rgba(251, 252, 232, 0.4) 41%, rgba(251, 252, 232, 0) 100%); */
+    display: none;
 }
 aside {
     position: fixed;
     left: 0;
     top: 0;
+    z-index: 3;
     background-color: var(--accent);
     height: 100%;
-    width: 13rem;
+    width: 15rem;
+    border-right: var(--light-accent) solid 4px;
 
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 1rem;
 }
+aside h1 {
+    color: var(--background);
+    margin: 0.5rem 0;
+}
+.newChat {
+    width: 13rem!important;
+}
 .asideChat {
+    position: relative;
     border-radius: 1rem;
     border: var(--light-accent) solid 2px;
-    color: white;
+    color: var(--light-accent);
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0.5rem;
     margin: 0.5rem 0;
+    width: 11rem;
+    transition: color 150ms, border 150ms;
 }
 .asideChat:hover {
     cursor: pointer;
+    border: white solid 2px;
+    color: white;
+}
+.chatContainer svg {
+    height: 1.3rem;
+    width: 1.3rem;
+    fill: var(--light-accent);
+    border-radius: 100%;
+    margin: 0 0.4rem;
+    transition: background-color 150ms, fill 150ms;
+}
+.chatContainer svg:hover {
+    cursor: pointer;
+    fill: white;
+    fill: var(--background);
+}
+#newSvg {
+    position: static;
+    margin-right: 0.3rem;
+}
+.chatContainer {
+    display: flex;
+    align-items: center;
+}
+.chatActive {
+    background-color: var(--light-accent)!important;
+    color: var(--accent)!important;
+    font-weight: 900;
+}
+.chatActive:hover {
+    border: var(--light-accent) solid 2px;
+
+}
+hr {
+    width: 14rem;
+    border: var(--light-accent) solid 1px;
+    border-radius: 1rem;
+}
+#eraseAll {
+    color: var(--light-accent);
+    text-decoration: underline;
+    font-weight: bold;
+    transition: color 150ms;
+    margin: 0.5rem;
+}
+#eraseAll:hover {
+    cursor: pointer;
+    color: white;
+}
+#opaquer {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: #00000000;
+    transition: background-color 150ms;
 }
 h2 {
     margin: 0;
@@ -100,22 +168,55 @@ h1 {
 }
 #welcome div {
     border-radius: 1rem;
-    background-color: var(--light-accent);
     color: var(--accent);
     padding: 1rem;
-    width: 20rem;
+    width: 60%;
     font-weight: bolder;
     text-align: center;
     margin: 0.5rem 0;
+    transition: outline 100ms ease-in-out;
 }
-.chatActive {
-    background-color: var(--light-accent)!important;
-    color: var(--accent)!important;
+
+#welcome p {
+    text-align: left;
+    font-size: large;
+    margin: 0.5rem 0;
 }
+
+textarea {
+    background-color: var(--light-accent);
+    border: none;
+    width: calc(100% - 2rem);
+    color: var(--accent);
+    font-weight: bold;
+    font-size: medium;
+    border-radius: 0.55rem;
+    padding: 1rem;
+    resize: none;
+    transition: background-color 150ms, color 150ms, outline 150ms;
+}
+textarea:focus {
+    color: var(--background);
+    background-color: var(--accent);
+    border: none;
+    outline: none;
+}
+textarea:focus::placeholder {
+    color: var(--light-accent);    
+}
+textarea::placeholder{
+    font-weight: 400;
+    color: var(--accent);    
+}
+#welcome div:focus-within {
+    outline: var(--accent) solid 3px;
+}
+
 #prompt {
     position: fixed;
     bottom: 0;
-    margin: 1rem 0;
+    margin: 1rem 1rem;
+    margin-bottom: 2rem;
     width: calc(100% - (var(--app-margin) * 2) - 2rem - 15rem);
     padding: 1rem;
     background-color: var(--accent);
@@ -125,7 +226,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background-color 350ms, outline 150ms;
+    transition: background-color 350ms, outline 150ms ease-in-out;
     outline: var(--accent) solid 0px;
 }
 
@@ -173,6 +274,17 @@ button {
 #prompt svg:hover {
     cursor: pointer;
     fill: white;
+}
+#description {
+    position: fixed;
+    bottom: 0;
+    font-size: smaller;
+    margin: 0.5rem 0;
+    width: calc(100% - 24rem);
+    color: rgba(0, 0, 0, 0.555);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #chat {
     margin-top: 1rem;
@@ -233,17 +345,62 @@ p {
     max-width: 60%;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
+    header {
+        display: flex;
+        background-color: var(--accent);
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        width: calc(100% - 2rem);
+    }
+    header svg {
+        fill: var(--light-accent);
+        height: 1.8rem;
+        width: 1.8rem;
+        transition: fill 150ms;
+    }
+    header svg:hover {
+        fill: white;
+        cursor: pointer;
+    }
+    .headerChat {
+        font-weight: bolder;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+    h2 {
+        color: var(--light-accent);
+    }
     body {
-        margin-left: 2rem;
+        margin: var(--app-margin);
+        margin-top: 5rem;
     }
     :root {
         --app-margin: 1rem;
     }
     aside {
-        width: 2rem;
+        display: none;
+        width: 0rem;
+        overflow: hidden;
+        transition: width 150ms;
+        border-right: var(--light-accent) solid 0px;
     }
-    aside:hover {
+    
+    .asideDeployed {
         width: 15rem;
+    }
+    #prompt {
+        width: calc(100% - (var(--app-margin) * 2) - 2rem);
+        left: 0;
+    }
+    #description {
+        width: calc(100% - (var(--app-margin) * 2) - 2rem);
+        font-size: 0.5rem;
+        height: 1rem;
+    }
+    #welcome div {
+        width: 100%;
     }
 }
