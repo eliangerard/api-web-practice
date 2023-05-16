@@ -184,7 +184,7 @@ h1 {
 }
 
 textarea {
-    background-color: var(--light-accent);
+    background-color: var(--accent);
     border: none;
     width: calc(100% - 2rem);
     color: var(--accent);
@@ -206,7 +206,7 @@ textarea:focus::placeholder {
 }
 textarea::placeholder{
     font-weight: 400;
-    color: var(--accent);    
+    color: var(--light-accent);    
 }
 #welcome div:focus-within {
     outline: var(--accent) solid 3px;
